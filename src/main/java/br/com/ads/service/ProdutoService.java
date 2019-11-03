@@ -36,6 +36,21 @@ public class ProdutoService {
 		return repository.save(produto);
 	}
 	
+	public Produto atualizar(Long codigo, Produto produto) {
+		Produto produtoSalvo = buscar(codigo);
+		repository.deleteById(produtoSalvo.getId());
+        
+		return repository.save(produto);
+	}
+	
+	public void delete(long id) {
+		
+		buscar(id);
+
+		repository.deleteById(id);
+
+	}
+	
 	private void verificarExistencia(Produto produto) {
 		if (produto.getId() != null && repository.findById(produto.getId()).orElse(null) != null) {
 			throw new ProdutoExistenteException("Produto já cadastrado.");

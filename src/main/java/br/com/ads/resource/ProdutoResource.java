@@ -48,4 +48,21 @@ public class ProdutoResource {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update( @RequestBody Produto obj,@PathVariable Long id){
+		//Convertendo Objeto categoria para objetoDto
+
+		obj = service.atualizar(id,obj);
+		return ResponseEntity.noContent().build();
+	}
+
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete (@PathVariable Integer id) {
+
+		service.delete(id);
+
+		return ResponseEntity.noContent().build();
+	}
 }
