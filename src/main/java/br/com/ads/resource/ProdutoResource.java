@@ -59,7 +59,7 @@ public class ProdutoResource {
 
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> delete (@PathVariable Integer id) {
+	public ResponseEntity<Void> delete (@PathVariable Long id) {
 
 		service.delete(id);
 
