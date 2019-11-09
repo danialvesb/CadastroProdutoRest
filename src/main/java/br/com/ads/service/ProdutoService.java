@@ -2,6 +2,7 @@ package br.com.ads.service;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class ProdutoService {
 	
 	public Produto atualizar(Long codigo, Produto produto) {
 		Produto produtoSalvo = buscar(codigo);
-		repository.deleteById(produtoSalvo.getId());
+		BeanUtils.copyProperties(produto, produtoSalvo, "codigo");
         
 		return repository.save(produto);
 	}
