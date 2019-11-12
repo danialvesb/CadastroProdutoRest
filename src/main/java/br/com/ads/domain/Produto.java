@@ -29,8 +29,6 @@ public class Produto {
 	
 	private String codBarra;
 	
-	private String preco;
-	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone="GMT-3")
 	@CreationTimestamp
@@ -90,14 +88,6 @@ public class Produto {
 
 	public void setCodBarra(String codBarra) {
 		this.codBarra = codBarra;
-	}
-
-	public String getPreco() {
-		return preco;
-	}
-
-	public void setPreco(String preco) {
-		this.preco = preco;
 	}
 
 	public Date getDtSaida() {
