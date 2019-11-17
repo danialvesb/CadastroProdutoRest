@@ -41,7 +41,6 @@ public class ProdutoService {
 	public Produto atualizar(Long id, Produto produto) {
 		Produto produtoSalvo = buscar(id);
 		BeanUtils.copyProperties(produto, produtoSalvo, "id");
-		
 		produtoSalvo = repository.save(produtoSalvo);
         
 		return (produtoSalvo);
