@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.ads.domain.*;
@@ -37,11 +38,13 @@ public class ProdutoService {
 		return repository.save(produto);
 	}
 	
-	public Produto atualizar(Long codigo, Produto produto) {
-		Produto produtoSalvo = buscar(codigo);
-		BeanUtils.copyProperties(produto, produtoSalvo, "codigo");
+	public Produto atualizar(Long id, Produto produto) {
+		Produto produtoSalvo = buscar(id);
+		BeanUtils.copyProperties(produto, produtoSalvo, "id");
+		
+		produtoSalvo = repository.save(produtoSalvo);
         
-		return repository.save(produto);
+		return (produtoSalvo);
 	}
 	
 	public void delete(long id) {
