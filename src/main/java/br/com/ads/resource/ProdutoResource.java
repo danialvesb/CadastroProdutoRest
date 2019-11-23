@@ -1,21 +1,24 @@
 package br.com.ads.resource;
 
+import java.awt.image.BufferedImage;
+import java.io.Writer;
 import java.net.URI;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.ads.domain.Produto;
 import br.com.ads.service.ProdutoService;
 import br.com.ads.service.exception.ProdutoExistenteException;
 import br.com.ads.service.exception.ProdutoNaoEncontradoException;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import sun.misc.BASE64Decoder;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/produtos")
@@ -33,13 +36,14 @@ public class ProdutoResource {
 	public ResponseEntity<?> salvarProduto(@RequestBody Produto produto) {
 		try {
 			produto = service.salvar(produto);
+
 			String uri = "http://localhost:8080/produtos/" + produto.getId();
 			return ResponseEntity.created(URI.create(uri)).build();
 		} catch (ProdutoExistenteException e) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
 	}
-	
+
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> buscarProduto(@PathVariable("id") Long id) {
 		try {

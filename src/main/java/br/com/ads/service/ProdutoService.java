@@ -1,5 +1,6 @@
 package br.com.ads.service;
 
+import java.io.Writer;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -11,6 +12,10 @@ import br.com.ads.domain.*;
 import br.com.ads.repository.ProdutoRepository;
 import br.com.ads.service.exception.ProdutoExistenteException;
 import br.com.ads.service.exception.ProdutoNaoEncontradoException;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class ProdutoService {
@@ -21,7 +26,9 @@ public class ProdutoService {
 	public List<Produto> listar() {
 		return repository.findAll();
 	}
-	
+
+
+
 	public Produto buscar(Long id) {
 		Produto produto = repository.findById(id).orElse(null);
 		

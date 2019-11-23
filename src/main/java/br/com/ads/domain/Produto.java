@@ -1,6 +1,8 @@
 package br.com.ads.domain;
 
+import java.sql.Blob;
 import java.sql.Date;
+import java.util.Base64;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,11 +26,22 @@ public class Produto {
 	private Double valor;
 	
 	private String descricao;
-	
-	private String fotoPath;
-	
-	private String codBarra;
-	
+
+	@Column(length = 1000000000)
+	private String imagem1;
+
+	@Column
+	private String imagem2;
+
+	@Column
+	private String imagem3;
+
+	@Column
+	private String imagem4;
+
+
+	private String imagem5;
+
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone="GMT-3")
 	@CreationTimestamp
@@ -74,22 +87,6 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public String getFotoPath() {
-		return fotoPath;
-	}
-
-	public void setFotoPath(String fotoPath) {
-		this.fotoPath = fotoPath;
-	}
-
-	public String getCodBarra() {
-		return codBarra;
-	}
-
-	public void setCodBarra(String codBarra) {
-		this.codBarra = codBarra;
-	}
-
 	public Date getDtSaida() {
 		return dtSaida;
 	}
@@ -105,7 +102,49 @@ public class Produto {
 	public void setDtEntrada(Date dtEntrada) {
 		this.dtEntrada = dtEntrada;
 	}
-	
+
+
+	public String getImagem1() {
+		return imagem1;
+	}
+
+	public void setImagem1(String imagem1) {
+		this.imagem1 = imagem1;
+	}
+
+	public String getImagem2() {
+		return imagem2;
+	}
+
+	public void setImagem2(String imagem2) {
+		this.imagem2 = imagem2;
+	}
+
+	public String getImagem3() {
+		return imagem3;
+	}
+
+	public void setImagem3(String imagem3) {
+		this.imagem3 = imagem3;
+	}
+
+	public String getImagem4() {
+		return imagem4;
+	}
+
+	public void setImagem4(String imagem4) {
+		this.imagem4 = imagem4;
+	}
+
+	public String getImagem5() {
+		return imagem5;
+	}
+
+	public void setImagem5(String imagem5) {
+		this.imagem5 = imagem5;
+	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
